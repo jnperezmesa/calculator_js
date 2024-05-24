@@ -12,6 +12,24 @@ When('first number is {int} and second number is {int}', function (first_number,
     this.actualAnswer = calculator.aggregation(first_number, second_number);
 });
 
+When('first number is {string} and second number is {int}', function (first_number, second_number) {
+    this.actualAnswer = calculator.aggregation(first_number, second_number);
+});
+
+When('first number is {int} and second number is {string}', function (first_number, second_number) {
+    this.actualAnswer = calculator.aggregation(first_number, second_number);
+});
+
+When('first number is {string} and second number is {string}', function (first_number, second_number) {
+    this.actualAnswer = calculator.aggregation(first_number, second_number);
+});
+
+
 Then('I should be told {int}', function (expectedAnswer) {
     assert.strictEqual(this.actualAnswer, expectedAnswer);
 });
+
+Then('I should be told {string}', function (expectedAnswer) {
+    assert.strictEqual(this.actualAnswer, expectedAnswer);
+});
+
