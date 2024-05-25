@@ -2,8 +2,8 @@ Feature: aggretation
   Basic aggregation
 
   Scenario Outline: Add two numbers
-    Given a calculator
-    When first number is <first_number> and second number is <second_number>
+    Given aggregation: a calculator
+    When aggregation: first number is <first_number> and second number is <second_number>
     Then I should be told <answer>
 
   Examples:
@@ -14,8 +14,8 @@ Feature: aggretation
     | -1            | -4              | -5      |
 
   Scenario Outline: Add two numbers
-    Given a calculator
-    When first number is <first_number> and second number is <second_number>
+    Given aggregation: a calculator
+    When aggregation: first number is <first_number> and second number is <second_number>
     Then I should be told <answer>
 
   Examples:
@@ -25,8 +25,8 @@ Feature: aggretation
     | 0.1            | -0.2           | -0.1    |
 
   Scenario Outline: Add string and number
-    Given a calculator
-    When first number is "<first_number>" and second number is <second_number>
+    Given aggregation: a calculator
+    When aggregation: first number is "<first_number>" and second number is <second_number>
     Then I should be told "<answer>"
 
     Examples:
@@ -36,8 +36,8 @@ Feature: aggretation
     | a             | -1              | Error       |
 
   Scenario Outline: Add number and string
-    Given a calculator
-    When first number is <first_number> and second number is "<second_number>"
+    Given aggregation: a calculator
+    When aggregation: first number is <first_number> and second number is "<second_number>"
     Then I should be told "<answer>"
 
   Examples:
@@ -47,8 +47,8 @@ Feature: aggretation
     | -1            | a               | Error       |
 
   Scenario Outline: Add string and string
-    Given a calculator
-    When first number is "<first_number>" and second number is "<second_number>"
+    Given aggregation: a calculator
+    When aggregation: first number is "<first_number>" and second number is "<second_number>"
     Then I should be told "<answer>"
 
   Examples:
