@@ -18,6 +18,31 @@ class Calculator {
 
     }
 
+    multiplication(firstNumber, secondNumber) {
+        try {
+            this.validateNumbers(firstNumber, secondNumber)
+            return this.getResult(firstNumber * secondNumber)
+        } catch (error) {
+            return error.message
+        }
+    }
+
+    division(firstNumber, secondNumber) {
+        try {
+            this.validateNumbers(firstNumber, secondNumber)
+            this.isZeroDivision(secondNumber)
+            return this.getResult(firstNumber / secondNumber)
+        } catch (error) {
+            return error.message
+        }
+    }
+
+    isZeroDivision(divisor) {
+        if (divisor === 0) {
+            throw new Error('Not possible');
+        }
+    }
+
     validateNumbers(...numbers) {
         const hasInvalidNumber = numbers.some(number => !this.isNumber(number));
         if (hasInvalidNumber) {

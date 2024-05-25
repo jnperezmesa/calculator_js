@@ -1,5 +1,4 @@
-const assert = require('assert');
-const { Given, When, Then } = require('@cucumber/cucumber');
+const { Given, When} = require('@cucumber/cucumber');
 const Calculator  = require('../../src/calculator');
 
 let calculator = new Calculator();
