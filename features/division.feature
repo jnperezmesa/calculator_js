@@ -7,11 +7,10 @@ Feature: division
     Then I should be told <answer>
 
     Examples:
-      | first_number  | second_number   | answer  |
+      | first_number  | second_number   | answer    |
       | 1             | 2               | 0.5       |
       | -1            | 2               | -0.5      |
-      | 0             | 0               | Not possible       |
-      | -1            | -4              | 0.25       |
+      | -1            | -4              | 0.25      |
 
   Scenario Outline: Multiply two numbers
     Given division: a calculator
@@ -58,3 +57,13 @@ Feature: division
       | 1             | 2               | Invalid number  |
       | -1            | 2               | Invalid number  |
       | Potatoe       | Salad           | Invalid number  |
+
+  Scenario Outline: division two numbers
+    Given division: a calculator
+    When division: first number is <first_number> and second number is <second_number>
+    Then I should be told "<answer>"
+    Examples:
+      | first_number  | second_number   | answer  |
+      | -10           | 0               | Not possible       |
+      | 10            | 0               | Not possible       |
+      | 0             | 0               | Not possible       |
