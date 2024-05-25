@@ -1,7 +1,7 @@
 Feature: aggretation
   Basic aggregation
 
-  Scenario Outline: Add two numbers
+  Scenario Outline: aggregation of two numbers
     Given aggregation: a calculator
     When aggregation: first number is <first_number> and second number is <second_number>
     Then I should be told <answer>
@@ -13,7 +13,7 @@ Feature: aggretation
     | 0             | 0               | 0       |
     | -1            | -4              | -5      |
 
-  Scenario Outline: Add two numbers
+  Scenario Outline: aggregation of two decimal numbers
     Given aggregation: a calculator
     When aggregation: first number is <first_number> and second number is <second_number>
     Then I should be told <answer>
@@ -24,7 +24,7 @@ Feature: aggretation
     | -0.1           | 0.2            | 0.1     |
     | 0.1            | -0.2           | -0.1    |
 
-  Scenario Outline: Add string and number
+  Scenario Outline: aggregation of string and number
     Given aggregation: a calculator
     When aggregation: first number is "<first_number>" and second number is <second_number>
     Then I should be told "<answer>"
@@ -35,7 +35,7 @@ Feature: aggretation
     | -1            | 2               | Invalid number       |
     | a             | -1              | Invalid number       |
 
-  Scenario Outline: Add number and string
+  Scenario Outline: aggregation of number and string
     Given aggregation: a calculator
     When aggregation: first number is <first_number> and second number is "<second_number>"
     Then I should be told "<answer>"
@@ -46,7 +46,7 @@ Feature: aggretation
     | -1            | 2               | Invalid number       |
     | -1            | a               | Invalid number       |
 
-  Scenario Outline: Add string and string
+  Scenario Outline: aggregation of string and string
     Given aggregation: a calculator
     When aggregation: first number is "<first_number>" and second number is "<second_number>"
     Then I should be told "<answer>"
