@@ -1,11 +1,14 @@
 class Calculator {
-    aggregation(first_number, second_number) {
-
-        if (typeof first_number == "string" || typeof second_number == "string") {
-            return "Error"
+    aggregation(firstNumber, secondNumber) {
+        if (this.isNumber(firstNumber) && this.isNumber(secondNumber)) {
+            return firstNumber + secondNumber;
         } else {
-            return first_number + second_number;
+            return "Error"
         }
+    }
+
+    isNumber(number) {
+        return typeof number == 'number';
     }
 }
 
