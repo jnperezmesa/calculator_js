@@ -18,6 +18,15 @@ class Calculator {
 
     }
 
+    multiplication(firstNumber, secondNumber) {
+        try {
+            this.validateNumbers(firstNumber, secondNumber)
+            return this.getResult(firstNumber * secondNumber)
+        } catch (error) {
+            return error.message
+        }
+    }
+
     validateNumbers(...numbers) {
         const hasInvalidNumber = numbers.some(number => !this.isNumber(number));
         if (hasInvalidNumber) {
