@@ -15,6 +15,7 @@ Feature: squareRoot
       | 9       | 3         |
       | 73      | 8.544     |
       | 100     | 10        |
+      | 361201     | 601        |
 
 
   Scenario Outline: square root of string 
