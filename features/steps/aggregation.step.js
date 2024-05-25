@@ -8,24 +8,23 @@ Given('a calculator', function () {
     calculator = new Calculator();
 });
 
-When('first number is {int} and second number is {int}', function (first_number, second_number) {
-    this.actualAnswer = calculator.aggregation(first_number, second_number);
-});
-
-When('first number is {string} and second number is {int}', function (first_number, second_number) {
-    this.actualAnswer = calculator.aggregation(first_number, second_number);
-});
-
-When('first number is {int} and second number is {string}', function (first_number, second_number) {
-    this.actualAnswer = calculator.aggregation(first_number, second_number);
-});
-
 When('first number is {string} and second number is {string}', function (first_number, second_number) {
     this.actualAnswer = calculator.aggregation(first_number, second_number);
 });
 
+When('first number is {float} and second number is {float}', function (first_number, second_number) {
+    this.actualAnswer = calculator.aggregation(first_number, second_number);
+});
 
-Then('I should be told {int}', function (expectedAnswer) {
+When('first number is {string} and second number is {float}', function (first_number, second_number) {
+    this.actualAnswer = calculator.aggregation(first_number, second_number);
+});
+
+When('first number is {float} and second number is {string}', function (first_number, second_number) {
+    this.actualAnswer = calculator.aggregation(first_number, second_number);
+});
+
+Then('I should be told {float}', function (expectedAnswer) {
     assert.strictEqual(this.actualAnswer, expectedAnswer);
 });
 
