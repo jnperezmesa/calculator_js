@@ -31,9 +31,9 @@ Feature: subtraction
 
     Examples:
     | first_number  | second_number   | answer      |
-    | 1             | 2               | Error       |
-    | -1            | 2               | Error       |
-    | a             | -1              | Error       |
+    | 1             | 2               | Invalid number       |
+    | -1            | 2               | Invalid number       |
+    | a             | -1              | Invalid number       |
 
   Scenario Outline: Subtract number and string
     Given subtraction: a calculator
@@ -42,9 +42,9 @@ Feature: subtraction
 
   Examples:
     | first_number  | second_number   | answer      |
-    | 1             | 2               | Error       |
-    | -1            | 2               | Error       |
-    | -1            | a               | Error       |
+    | 1             | 2               | Invalid number       |
+    | -1            | 2               | Invalid number       |
+    | -1            | a               | Invalid number       |
 
   Scenario Outline: Subtract string and string
     Given subtraction: a calculator
@@ -53,6 +53,6 @@ Feature: subtraction
 
   Examples:
     | first_number  | second_number   | answer      |
-    | 1             | 2               | Error       |
-    | -1            | 2               | Error       |
-    | Potatoe       | Salad           | Error       |
+    | 1             | 2               | Invalid number       |
+    | -1            | 2               | Invalid number       |
+    | Potatoe       | Salad           | Invalid number       |

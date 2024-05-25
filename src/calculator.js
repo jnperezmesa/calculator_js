@@ -1,29 +1,49 @@
 class Calculator {
     aggregation(firstNumber, secondNumber) {
-        if (!this.isNumber(firstNumber) || !this.isNumber(secondNumber)) {
-            return "Error";
+        try {
+            this.validateNumbers(firstNumber, secondNumber)
+            return this.getResult(firstNumber + secondNumber)
+        } catch (error) {
+            return error.message
+        }
+    }
+
+    subtraction(firstNumber, secondNumber) {
+        try {
+            this.validateNumbers(firstNumber, secondNumber)
+            return this.getResult(firstNumber - secondNumber)
+        } catch (error) {
+            return error.message
         }
 
-        const result = firstNumber + secondNumber
+    }
 
-        if (this.isFloat(firstNumber) || this.isFloat(secondNumber)) {
-            return this.fixedPrecision(result);
-        } else {
-            return result;
+    validateNumbers(...numbers) {
+        const hasInvalidNumber = numbers.some(number => !this.isNumber(number));
+        if (hasInvalidNumber) {
+            throw new Error('Invalid number');
         }
     }
 
     isNumber(number) {
-        return typeof number == 'number';
+        return typeof number == 'number'
+    }
+
+    getResult(result){
+         if (this.isFloat(result)) {
+            return this.fixedPrecision(result)
+        } else {
+            return result
+        }
     }
 
     isFloat(number) {
-        return (number % 1) !== 0;
+        return (number % 1) !== 0
     }
 
     fixedPrecision( number ){
-        return parseFloat(number.toFixed(3));
+        return parseFloat(number.toFixed(3))
     }
 }
 
-module.exports = Calculator;
+module.exports = Calculator
