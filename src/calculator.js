@@ -70,7 +70,7 @@ class Calculator {
     }
 
     isLessThanZero(number) {
-        if (number < 0) {
+        if (this.isNegative(number)) {
             throw new Error('Not possible');
         }
     }
@@ -78,21 +78,25 @@ class Calculator {
     exponential(number) {
         try {
             this.validateNumbers(number)
-            let isNegative = number < 0;
+            const isNegative = this.isNegative(number)
             if (isNegative) {
                 number = -number;
             }
-            let sum = 1.0;
-            let term = 1.0;
-            for (let n = 1; term > 1e-3; n++) {
-                term *= number / n;
-                sum += term;
-            }
-            let result = isNegative ? 1.0 / sum : sum;
+            let result = this.calculateExponential(number, isNegative)
             return this.getResult(result)
         } catch (error) {
             return error.message
         }
+    }
+
+    calculateExponential(number, isNegative) {
+        let sumOfSeries = 1.0;
+        let term = 1.0;
+        for (let n = 1; term > 1e-3; n++) {
+            term *= number / n;
+            sumOfSeries += term;
+        }
+        return isNegative ? 1.0 / sumOfSeries : sumOfSeries;
     }
 
     validateNumbers(...numbers) {
@@ -100,6 +104,10 @@ class Calculator {
         if (hasInvalidNumber) {
             throw new Error('Invalid number');
         }
+    }
+
+    isNegative(number) {
+        return number < 0
     }
 
     isNumber(number) {
