@@ -4,7 +4,7 @@ Feature: Exponential
   Scenario Outline: Exponential of numbers
     Given exponential: a calculator
     When exponential: I calculate the exponential of <number>
-    Then I should be told "<answer>"
+    Then I should be told <answer>
 
     Examples:
       | number  | answer     |
@@ -12,8 +12,8 @@ Feature: Exponential
       | 1       | 2.718      |
       | 2       | 7.389      |
       | 3       | 20.085     |
-      | 9       | 8103.083   |
-      | 10      | 22026.465  |
+      | 9       | 8103.084   |
+      | 10      | 22026.466  |
       | 5       | 148.413    |
       | -1      | 0.368      |
       | -2      | 0.135      |

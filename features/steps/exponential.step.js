@@ -11,6 +11,6 @@ When('exponential: I calculate the exponential of {float}', function (number) {
     this.actualAnswer = calculator.exponential(number);
 });
 
-When('exponential: number is {float}', function (number) {
+When('exponential: number is {string}', function (number) {
     this.actualAnswer = calculator.exponential(number);
 });

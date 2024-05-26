@@ -37,6 +37,12 @@ class Calculator {
         }
     }
 
+    isZeroDivision(divisor) {
+        if (divisor === 0) {
+            throw new Error('Not possible');
+        }
+    }
+
     squareRoot(number) {
         try {
             this.validateNumbers(number)
@@ -69,9 +75,23 @@ class Calculator {
         }
     }
 
-    isZeroDivision(divisor) {
-        if (divisor === 0) {
-            throw new Error('Not possible');
+    exponential(number) {
+        try {
+            this.validateNumbers(number)
+            let isNegative = number < 0;
+            if (isNegative) {
+                number = -number;
+            }
+            let sum = 1.0;
+            let term = 1.0;
+            for (let n = 1; term > 1e-3; n++) {
+                term *= number / n;
+                sum += term;
+            }
+            let result = isNegative ? 1.0 / sum : sum;
+            return this.getResult(result)
+        } catch (error) {
+            return error.message
         }
     }
 
@@ -98,7 +118,7 @@ class Calculator {
         return (number % 1) !== 0
     }
 
-    fixedPrecision( number ){
+    fixedPrecision(number){
         return parseFloat(number.toFixed(3))
     }
 }
