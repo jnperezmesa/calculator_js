@@ -1,7 +1,7 @@
 Feature: multiplication
   Basic multiplication
 
-  Scenario Outline: multiplication two numbers
+  Scenario Outline: multiplication of two numbers
     Given multiplication: a calculator
     When multiplication: first number is <first_number> and second number is <second_number>
     Then I should be told <answer>
@@ -13,7 +13,7 @@ Feature: multiplication
       | 0             | 0               | 0       |
       | -1            | -4              | 4       |
 
-  Scenario Outline: Multiply two numbers
+  Scenario Outline: multiplication of two decimal numbers
     Given multiplication: a calculator
     When multiplication: first number is <first_number> and second number is <second_number>
     Then I should be told <answer>
@@ -25,7 +25,7 @@ Feature: multiplication
       | 0.1           | -0.2            | -0.02   |
       | -0.1          | -0.2            | 0.02    |
 
-  Scenario Outline: multiplication string and number
+  Scenario Outline: multiplication of string and number
     Given multiplication: a calculator
     When multiplication: first number is "<first_number>" and second number is <second_number>
     Then I should be told "<answer>"
@@ -36,7 +36,7 @@ Feature: multiplication
       | -1            | 2               | Invalid number  |
       | a             | -1              | Invalid number  |
 
-  Scenario Outline: multiplication number and string
+  Scenario Outline: multiplication of number and string
     Given multiplication: a calculator
     When multiplication: first number is <first_number> and second number is "<second_number>"
     Then I should be told "<answer>"
@@ -47,7 +47,7 @@ Feature: multiplication
       | -1            | 2               | Invalid number  |
       | -1            | a               | Invalid number  |
 
-  Scenario Outline: multiplication string and string
+  Scenario Outline: multiplication of string and string
     Given multiplication: a calculator
     When multiplication: first number is "<first_number>" and second number is "<second_number>"
     Then I should be told "<answer>"
