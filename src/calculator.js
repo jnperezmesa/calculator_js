@@ -56,7 +56,6 @@ class Calculator {
 
     approximateSquareRoot(number, previousApproximation) {
         let newApproximation = 0.5 * (previousApproximation + (number / previousApproximation))
-        console.log(newApproximation, previousApproximation)
         if (newApproximation.toFixed(3) === previousApproximation.toFixed(3)) {
             return newApproximation
         } else {
