@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Calculadora</title>
+    <script src="calculatorFunctioning.js" type="module"></script>
+    <style>
+        input {
+            height: 30px;
+            text-align: center;
+        }
+
+        button {
+            margin: 10px 0 0 0
+        }
+
+        .row {
+            margin: 5px;
+        }
+
+        .row button {
+            margin: 5px;
+            height: 30px;
+            width: 35px;
+        }
+
+        #previous {
+            /* position: fixed;*/
+            top: -50px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: center;">
+    <input
+            id="previous"
+            placeholder="previous number (for test)"
+            readonly
+            type="text"
+    />
+    <div></div>
+
+    <input id="result" readonly type="text" value="0"/>
+
+    <div>
+        <button id="clear">clear</button>
+    </div>
+
+    <div class="row">
+        <button class="operation" id="/">/</button>
+        <button class="operation" id="√">√</button>
+        <button class="operation" id="e">e <sup>x</sup></button>
+        <button id="⌫"> ⌫</button>
+    </div>
+
+    <div class="row">
+        <button class="number" id="7">7</button>
+        <button class="number" id="8">8</button>
+        <button class="number" id="9">9</button>
+        <button class="operation" id="*">*</button>
+    </div>
+
+    <div class="row">
+        <button class="number" id="4">4</button>
+        <button class="number" id="5">5</button>
+        <button class="number" id="6">6</button>
+        <button class="operation" id="-">-</button>
+    </div>
+
+    <div class="row">
+        <button class="number" id="1">1</button>
+        <button class="number" id="2">2</button>
+        <button class="number" id="3">3</button>
+        <button class="operation" id="+">+</button>
+    </div>
+
+    <div class="row">
+        <button id="+/-"><sup>+</sup>/<sub>-</sub></button>
+        <button class="number" id="0">0</button>
+        <button class="number" id=".">.</button>
+        <button id="=">=</button>
+    </div>
+</div>
+</body>
+</html>
