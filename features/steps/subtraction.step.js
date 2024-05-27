@@ -1,5 +1,5 @@
-const {Given, When} = require('@cucumber/cucumber');
-const Calculator = require('../../src/calculator');
+const { Given, When} = require('@cucumber/cucumber');
+const Calculator  = require('../../src/calculator');
 
 let calculator = new Calculator();
 
