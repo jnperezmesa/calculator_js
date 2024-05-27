@@ -26,6 +26,7 @@
 </head>
 <body>
 <div style="text-align: center;">
+    <label for="previous"></label>
     <input
             id="previous"
             type="text"
@@ -33,6 +34,7 @@
             placeholder="previous number (for test)"
     />
     <div></div>
+    <label for="result"></label>
     <input id="result" type="text" readonly />
     <div class="row">
         <button id="+">+</button>
@@ -65,7 +67,7 @@
 </div>
 </body>
 <script>
-    const Calculator = require("../../src/calculator");
+    const Calculator = require("./src/Calculator");
 
     let calculator = new Calculator();
 
@@ -76,7 +78,7 @@
         (element) => {
             element.addEventListener("click", (e) => {
                 //Ejecutar ecuaciones
-                if (operation.length == 3 || e.target.id == "equal") {
+                if (operation.length === 3 || e.target.id === "equal") {
                     num1 = operation[0];
                     switch (operation[1]) {
                         case "+":
