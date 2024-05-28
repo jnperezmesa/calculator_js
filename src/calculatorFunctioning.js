@@ -1,9 +1,9 @@
-import Calculator from './calculator.js'
-
+// import  Calculator  from './calculator.js'
+import {Calculator} from './calculator.js';
 const calculator = new Calculator()
-
 let operation = []
 let availableOperations = '='
+
 document.getElementById("=").addEventListener("click", () => {
     let result = document.getElementById("previous").value
     if (!Array.from(result).some((letter) => letter === '=')) {
@@ -85,14 +85,12 @@ Array.from(document.getElementsByClassName("number")).forEach((element) => {
 
 Array.from(document.getElementsByClassName("operation")).forEach((element) => {
     element.addEventListener("click", (e) => {
-        console.log(operation)
-        let num1 = parseFloat(operation[0])
-        let result
-
         if (!operation[0]) {
             operation.push(document.getElementById("result").value)
         }
 
+        let num1 = parseFloat(operation[0])
+        let result
         switch (e.target.id) {
             case "√":
                 result = calculator.squareRoot(num1)

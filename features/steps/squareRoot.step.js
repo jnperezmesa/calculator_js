@@ -1,7 +1,6 @@
 const {Given, When} = require('@cucumber/cucumber');
-const Calculator = require('../../src/calculator');
-
-let calculator = new Calculator();
+const {Calculator} = require('../../src/calculator.js');
+let calculator = new Calculator()
 
 Given('squareRoot: a calculator', function () {
     calculator = new Calculator();
