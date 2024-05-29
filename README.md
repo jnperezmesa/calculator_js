@@ -1,4 +1,24 @@
-# Calculadora en JavaScript
+# JavaScript Calculator (EN)
+
+This is a simple calculator built with plain JavaScript.
+
+## Installation
+
+1. Clone this repository.
+2. Run `npm install` to install the dependencies.
+
+## Usage
+
+- Run `npm run dev` to start the development server.
+- Open your browser and visit `http://localhost:8080` to see the calculator.
+
+## Build
+- Run `npm run build` to build the application in production mode.
+
+## Tests
+Run `npm run test` to execute the tests with Cucumber.js.
+
+# Calculadora en JavaScript (ES)
 
 Esta es una simple calculadora construida con JavaScript plano.
 
