@@ -8,7 +8,8 @@
     "vanilla"
   ],
   "scripts": {
-    "test": "cucumber-js",
+    "test:unit": "cucumber-js features/unit",
+    "test:ui": "cucumber-js features/ui",
     "dev": "webpack --config webpack.dev.js && live-server",
     "build": "webpack --config webpack.prod.js"
   },
