@@ -9,14 +9,19 @@
   ],
   "scripts": {
     "test": "cucumber-js",
-    "start": "live-server",
-    "reset": "rm -rf node_modules && npm install"
+    "dev": "webpack --config webpack.dev.js && live-server",
+    "build": "webpack --config webpack.prod.js"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.8.0",
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "@babel/core": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "@babel/preset-env": "^7.16.0"
   },
-  "author": "Tu Nombre o Organización",
+  "author": "",
   "license": "MIT",
   "engines": {
     "node": ">=14.0.0"
