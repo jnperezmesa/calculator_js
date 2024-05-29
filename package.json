@@ -9,14 +9,13 @@
   ],
   "scripts": {
     "test": "cucumber-js",
-    "start": "live-server",
-    "reset": "rm -rf node_modules && npm install"
+    "start": "live-server"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.8.0",
     "live-server": "^1.2.2"
   },
-  "author": "Tu Nombre o Organización",
+  "author": "",
   "license": "MIT",
   "engines": {
     "node": ">=14.0.0"

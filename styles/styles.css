@@ -1,0 +1,24 @@
+input {
+    height: 30px;
+    text-align: center;
+}
+
+button {
+    margin: 10px 0 0 0
+}
+
+.row {
+    margin: 5px;
+}
+
+.row button {
+    margin: 5px;
+    height: 30px;
+    width: 35px;
+}
+
+#previous {
+    /* position: fixed;*/
+    top: -50px;
+    z-index: -1;
+}
