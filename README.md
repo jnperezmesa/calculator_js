@@ -9,8 +9,11 @@ Esta es una simple calculadora construida con JavaScript plano.
 
 ## Uso
 
-- Ejecuta `npm start` para iniciar el servidor de desarrollo.
+- Ejecuta `npm run dev` para iniciar el servidor de desarrollo.
 - Abre tu navegador y visita `http://localhost:8080` para ver la calculadora.
 
+## Construcción
+- Ejecuta `npm run build` para construir la aplicación en modo de producción.
+
 ## Pruebas
-Ejecuta `npm test` para ejecutar las pruebas con Cucumber.js.
+Ejecuta `npm run test` para ejecutar las pruebas con Cucumber.js.

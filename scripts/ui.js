@@ -1,4 +1,4 @@
-import { Calculator } from './calculator.js'
+import Calculator from './calculator';
 const calculator = new Calculator()
 let operation = []
 let availableOperations = '='

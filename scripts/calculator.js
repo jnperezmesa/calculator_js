@@ -134,12 +134,4 @@ class Calculator {
     }
 }
 
-
-
-//Export for testing
-//module.exports = Calculator;
-
-//Export for browser
-export { Calculator };
-
-
+module.exports = Calculator;
