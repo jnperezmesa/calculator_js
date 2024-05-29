@@ -1,6 +1,7 @@
-const {Given, When} = require('@cucumber/cucumber');
-const {Calculator} = require('../../src/calculator.js');
-let calculator = new Calculator()
+const { Given, When } = require('@cucumber/cucumber');
+const Calculator  = require('../../scripts/calculator');
+
+let calculator = new Calculator();
 
 Given('division: a calculator', function () {
     calculator = new Calculator();
