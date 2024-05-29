@@ -3,7 +3,6 @@ const { Given, When, Then, AfterAll } = require('@cucumber/cucumber');
 const { Builder, By, Capabilities } = require('selenium-webdriver');
 require("chromedriver");
 
-
 // driver setup
 const capabilities = Capabilities.chrome();
 
@@ -20,16 +19,14 @@ When('UI: I click on {string}', async function (searchTerm) {
     element.click();
 });
 
-Then('UI: I should be told {string}', {timeout: 60 * 1000}, async function () {
-    const element = await driver.findElement(By.id("result"));
-
-    assert.strictEqual(this.operation, element.value);
+Then('UI: I should be told {string}', {timeout: 60 * 1000}, async function (result) {
+    const element =  await driver.findElement(By.id('result')).getAttribute("value");
+    assert.strictEqual(result, element);
 });
 
-Then('UI: Previous should tell {string}', {timeout: 60 * 1000}, async function () {
-    const element = await driver.findElement(By.id("previous"));
-
-    assert.strictEqual(this.operation, element.value);
+Then('UI: Previous should tell {string}', {timeout: 60 * 1000}, async function (operation) {
+    const element = await driver.findElement(By.id('previous')).getAttribute("value");
+    assert.strictEqual(operation, element);
 });
 
 AfterAll(async function(){
