@@ -16,62 +16,73 @@ let resultDisplay = document.getElementById(RESULT)
 // ============ Functions ============
 function setBasicOperationsListener() {
     document.getElementById("=").addEventListener("click", () => {
-        let result = previousDisplay.value
-        if (!Array.from(result).some((letter) => letter === '=')) {
-            operation.push(resultDisplay.value)
-            let num1 = parseFloat(operation[0])
-            let operationSymbol = operation[1]
-            let num2 = parseFloat(operation[2])
+        if (!Array.from(previousDisplay.value).some((letter) => letter === '=')) {
+            let {num1, operationSymbol, num2} = getOperationData()
             let result;
+
             switch (operationSymbol) {
                 case "+":
                     result = CALCULATOR.aggregation(num1, num2)
-                    previousDisplay.value = num1 + '+' + num2 + " ="
-                    resultDisplay.value = result
-                    operation = [result]
                     break
                 case "-":
                     result = CALCULATOR.subtraction(num1, num2)
-                    previousDisplay.value = num1 + '-' + num2 + " ="
-                    resultDisplay.value = result
-                    operation = [result]
                     break
                 case "*":
                     result = CALCULATOR.multiplication(num1, num2)
-                    previousDisplay.value = num1 + '*' + num2 + " ="
-                    resultDisplay.value = result
-                    operation = [result]
                     break
                 case "/":
                     result = CALCULATOR.division(num1, num2)
-                   previousDisplay.value = num1 + '/' + num2 + " ="
-                    resultDisplay.value = result
-                    operation = [result]
                     break
             }
+
+            updateDisplay(num1 + operationSymbol + num2, result)
         }
     })
 
+}
+
+
+function getOperationData() {
+    // let [num1, operationSymbol, num2] = operation
+    operation.push(resultDisplay.value)
+    return [parseFloat(operation[0]), operation[1], parseFloat(operation[2])]
+}
+
+
+function updateDisplay(string_operation, result) {
+    previousDisplay.value = string_operation + " ="
+    resultDisplay.value = result
+    operation = [result]
 }
 
 function setRemoveListener() {
     document.getElementById("⌫").addEventListener("click", () => {
-        let result = resultDisplay.value
-        if (result.length === 1) {
-            resultDisplay.value = 0
-        } else {
-            resultDisplay.value = result.slice(0, result.length - 1)
-        }
+        removeLast()
     })
+}
+
+function removeLast() {
+    let result = resultDisplay.value
+    if (result.length === 1) {
+        resultDisplay.value = 0
+    } else {
+        resultDisplay.value = result.slice(0, result.length - 1)
+    }
 }
 
 function setClearListener() {
     document.getElementById("clear").addEventListener("click", () => {
-       previousDisplay.value = ''
-        resultDisplay.value = '0'
-        operation = []
+       clearAll()
     })
 }
+
+function clearAll() {
+    previousDisplay.value = ''
+    resultDisplay.value = '0'
+    operation = []
+}
+
+
 
 
 
@@ -79,32 +90,31 @@ function setOperationListeners() {
     Array.from(document.getElementsByClassName("operation")).forEach((element) => {
 
         element.addEventListener("click", (e) => {
-
                 if (!operation[0]) {
                     operation.push(resultDisplay.value)
                 }
 
                 let num1 = parseFloat(operation[0])
                 let result
+                let previousDisplay2
+
                 switch (e.target.id) {
                     case "√":
                         result = CALCULATOR.squareRoot(num1)
-                       previousDisplay.value = "√" + num1 + " ="
-                        resultDisplay.value = result
-                        operation = [result]
+                        previousDisplay2 = "√" + num1
                         break
 
                     case "e":
                         result = CALCULATOR.exponential(num1)
-                       previousDisplay.value = "e^" + num1 + " ="
-                        resultDisplay.value = result
-                        operation = [result]
+                        previousDisplay2 = "e^" + num1
                         break
 
                     default:
                         replaceResultField(e)
                         break
                 }
+
+                updateDisplay(previousDisplay2, result)
 
             }
         )
