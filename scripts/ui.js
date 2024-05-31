@@ -14,12 +14,64 @@ let resultDisplay = document.getElementById(RESULT)
 
 
 // ============ Functions ============
+function setOperationListeners() {
+    Array.from(document.getElementsByClassName("operation")).forEach((element) => {
+        element.addEventListener("click", (e) => {
+                //Si viene lleno con un valor anterior no se pone otro, que causaria repeticion y que hubiera 4 valores en el array en vez de 3
+                // es para las operaciones encadenadas
+                if (!operation[0]) {
+                    operation.push(resultDisplay.value)
+                }
+
+                // let [num1, operationSymbol, num2] = getOperationData()
+
+                let num1 = parseFloat(operation[0])
+                let result
+                let operationDisplay
+                let finishedOperation = true
+
+                switch (e.target.id) {
+                    case "√":
+                        result = CALCULATOR.squareRoot(num1)
+                        operationDisplay = "√" + num1
+                        break
+
+                    case "e":
+                        result = CALCULATOR.exponential(num1)
+                        operationDisplay = "e^" + num1
+                        break
+
+                    default:
+                        // aqui se ponen el resto de simbolos en el array operation y en el campo previous (pasa mucha cosa por aqui modificar con cuidado)
+                        result = 0
+                        operationDisplay = parseFloat(operation[0]) + e.target.id
+                        operation.push(e.target.id)
+                        finishedOperation = false
+                        break
+                }
+
+                updateDisplay(operationDisplay, result, finishedOperation)
+            }
+        )
+    })
+}
+
+function updateDisplay(stringOperation, result, addEqual=true) {
+    if (addEqual) {
+        stringOperation += " ="
+        operation = [result]
+    }
+    console.log(operation)
+    previousDisplay.value = stringOperation
+    resultDisplay.value = result
+}
+
+
 function setBasicOperationsListener() {
     document.getElementById("=").addEventListener("click", () => {
         if (!Array.from(previousDisplay.value).some((letter) => letter === '=')) {
-            let {num1, operationSymbol, num2} = getOperationData()
+            let [num1, operationSymbol, num2] = getOperationData()
             let result;
-
             switch (operationSymbol) {
                 case "+":
                     result = CALCULATOR.aggregation(num1, num2)
@@ -34,30 +86,31 @@ function setBasicOperationsListener() {
                     result = CALCULATOR.division(num1, num2)
                     break
             }
-
-            updateDisplay(num1 + operationSymbol + num2, result)
+            updateDisplay("" + num1 + operationSymbol + num2, result)
         }
     })
 
 }
 
-
 function getOperationData() {
-    // let [num1, operationSymbol, num2] = operation
+    // [num1, operationSymbol, num2]
     operation.push(resultDisplay.value)
     return [parseFloat(operation[0]), operation[1], parseFloat(operation[2])]
 }
 
-
-function updateDisplay(string_operation, result) {
-    previousDisplay.value = string_operation + " ="
-    resultDisplay.value = result
-    operation = [result]
-}
-
-function setRemoveListener() {
-    document.getElementById("⌫").addEventListener("click", () => {
-        removeLast()
+// Inicio funciones de limpieza
+function setCleanListeners() {
+    Array.from(document.getElementsByClassName("clean")).forEach((element) => {
+        element.addEventListener("click", (e) => {
+            switch (e.target.id) {
+                case "⌫":
+                    removeLast()
+                    break
+                case "clear" :
+                    clearAll()
+                    break
+            }
+        })
     })
 }
 
@@ -70,12 +123,6 @@ function removeLast() {
     }
 }
 
-function setClearListener() {
-    document.getElementById("clear").addEventListener("click", () => {
-       clearAll()
-    })
-}
-
 function clearAll() {
     previousDisplay.value = ''
     resultDisplay.value = '0'
@@ -83,53 +130,10 @@ function clearAll() {
 }
 
 
-
-
-
-function setOperationListeners() {
-    Array.from(document.getElementsByClassName("operation")).forEach((element) => {
-
-        element.addEventListener("click", (e) => {
-                if (!operation[0]) {
-                    operation.push(resultDisplay.value)
-                }
-
-                let num1 = parseFloat(operation[0])
-                let result
-                let previousDisplay2
-
-                switch (e.target.id) {
-                    case "√":
-                        result = CALCULATOR.squareRoot(num1)
-                        previousDisplay2 = "√" + num1
-                        break
-
-                    case "e":
-                        result = CALCULATOR.exponential(num1)
-                        previousDisplay2 = "e^" + num1
-                        break
-
-                    default:
-                        replaceResultField(e)
-                        break
-                }
-
-                updateDisplay(previousDisplay2, result)
-
-            }
-        )
-    })
-}
-
-function replaceResultField(e) {
-   previousDisplay.value = parseFloat(operation[0]) + e.target.id
-    resultDisplay.value = 0
-    operation.push(e.target.id)
-}
-
+// Fin funciones de limpieza
 function setChangeSymbolListener() {
     document.getElementById("+/-").addEventListener("click", () => {
-        removePrevious()
+        cleanPreviousDisplay()
 
         let result = resultDisplay.value
 
@@ -139,18 +143,17 @@ function setChangeSymbolListener() {
             resultDisplay.value = result.slice(1, result.length)
         }
     })
-
 }
 
 function setNumbersListeners() {
     Array.from(document.getElementsByClassName("number")).forEach((element) => {
         element.addEventListener("click", (e) => {
-            removePrevious()
+            cleanPreviousDisplay()
 
-            let temp = resultDisplay.value
+            let currentValue = resultDisplay.value
 
-            if ((temp === '0' || temp === '-0') && e.target.id !== '.') {
-                resultDisplay.value = temp.replaceAll('0', e.target.id)
+            if ((currentValue === '0' || currentValue === '-0') && e.target.id !== '.') {
+                resultDisplay.value = currentValue.replaceAll('0', e.target.id)
             } else {
                 resultDisplay.value += e.target.id
             }
@@ -158,19 +161,19 @@ function setNumbersListeners() {
     })
 }
 
-function removePrevious() {
-    let result = previousDisplay.value
-    if (Array.from(result).some((letter) => Array.from(availableOperations).some((symbol) => symbol === letter))) {
-       previousDisplay.value = ''
+function cleanPreviousDisplay() {
+    let previous = previousDisplay.value
+    if (Array.from(previous).some((letter) => Array.from(availableOperations).some((symbol) => symbol === letter))) {
+        previousDisplay.value = ''
         operation = []
         resultDisplay.value = '0'
     }
 }
 
+
 // ============ Listeners ============
+setCleanListeners()
 setBasicOperationsListener()
 setOperationListeners()
-setRemoveListener()
 setChangeSymbolListener()
-setClearListener()
 setNumbersListeners()
