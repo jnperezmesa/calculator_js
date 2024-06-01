@@ -49,7 +49,7 @@ Feature: CalculatorUI
       | 1         | -          | 2         | =          | -1     | 1-2 =     |
       | 3         | *          | 3         | =          | 9      | 3*3 =     |
       | 9         | /          | 8         | =          | 1.125  | 9/8 =     |
-      | 8         | +          | 8         | +          | 0      | 16        |
+      | 8         | +          | 8         | +          | 0      | 16+       |
 
   Scenario Outline: TestUICalculator5clicks
 
@@ -64,7 +64,7 @@ Feature: CalculatorUI
 
     Examples:
       | first_key | second_key | third_key | fourth_key | fifth_key | answer | operation |
-      | 1         | .          | 1         | 2          | √         | 1.058      | √1.12 =     |
+      | 1         | .          | 1         | 2          | √         | 1.058  | √1.12 =   |
       | 9         | +          | 8         | =          | ⌫         | 1      |           |
 
   Scenario Outline: TestUICalculator6clicks
