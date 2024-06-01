@@ -83,6 +83,7 @@ Feature: CalculatorUI
       | 5         | -          | 2         | /          | 2         | =         | 1.5     | 3/2 =     |
       | 8         | √          | +         | 2          | =         | e         | 124.961 | e^4.828 = |
 
+
   Scenario Outline: TestUICalculator7clicks
     Given UI: I am on the calculator
     When UI: I click on "<first_key>"
@@ -95,9 +96,10 @@ Feature: CalculatorUI
     Then UI: I should be told "<answer>"
     And UI: Previous should tell "<operation>"
     Examples:
-      | first_key | second_key | third_key | fourth_key | fifth_key | sixth_key | seventh_key | answer    | operation         |
-      | +/-       | 5          | +         | 3          | *         | 2         | =           | -4       | -2*2 =          |
+      | first_key | second_key | third_key | fourth_key | fifth_key | sixth_key | seventh_key | answer    | operation      |
+      | +/-       | 5          | +         | 3          | *         | 2         | =           | -4        | -2*2 =         |
       | 1         | 0          | e         | +          | 5         | √         | =           | 22028.702 | 22026.466+√5 = |
+      | 1         | +          | 1         | =          | +         | 1         | =           | 3         | 2+1 =          |
 
   Scenario Outline: TestUICalculatorErrorHandling
     Given UI: I am on the calculator

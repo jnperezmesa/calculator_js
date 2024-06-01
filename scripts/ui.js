@@ -24,21 +24,25 @@ function setOperationListeners() {
                 let operationDisplay
                 let finishedOperation = true
                 let operationSymbol = e.target.id
+                let isConcatOperation = operation.length === 2 && BASIC_OPERATIONS.includes(operationSymbol)
 
-
-                if (operation.length === 2 && BASIC_OPERATIONS.includes(operationSymbol)) {
+                if (isConcatOperation) {
+                    console.log(operationSymbol)
                     launchOperation()
-
+                    updateDisplay(resultDisplay.value + operationSymbol, 0)
+                    operation.push(operationSymbol)
                 } else {
                     switch (operationSymbol) {
                         case "√":
                             result = CALCULATOR.squareRoot(num1)
-                            operationDisplay = "√" + num1
+                            operationDisplay = "√" + num1 + ' ='
+                            operation = [result]
                             break
 
                         case "e":
                             result = CALCULATOR.exponential(num1)
-                            operationDisplay = "e^" + num1
+                            operationDisplay = "e^" + num1 + ' ='
+                            operation = [result]
                             break
 
                         default:
@@ -47,11 +51,11 @@ function setOperationListeners() {
                             operation.push(operationSymbol)
 
                             finishedOperation = false
+
                             break
                     }
                     memoryResult = num1
-                    console.log(memoryResult, operation)
-                    updateDisplay(operationDisplay, result, finishedOperation)
+                    updateDisplay(operationDisplay, result)
                 }
             }
         )
@@ -59,8 +63,6 @@ function setOperationListeners() {
 }
 
 function updateOperation() {
-    //Si viene lleno con un valor anterior no se pone otro, que causaría repetición y que hubiera 4 valores en el array en vez de 3
-    // es para las operaciones encadenadas
     // Add result data to the operation array if it's empty
     // It is for chained operations (Example 4+4 = 8+4)
     if (!operation[0]) {
@@ -70,25 +72,6 @@ function updateOperation() {
 
 function getFirstValue() {
     return parseFloat(resultDisplay.value)
-}
-
-function updateDisplay(stringOperation, result, addEqual = true) {
-    if (addEqual) {
-        stringOperation += " ="
-        operation = [result]
-    }
-
-    previousDisplay.value = stringOperation
-    resultDisplay.value = result
-}
-
-
-function setBasicOperationsListener() {
-    document.getElementById("=").addEventListener("click", () => {
-        if (!Array.from(previousDisplay.value).some((letter) => letter === '=')) {
-            launchOperation()
-        }
-    })
 }
 
 function launchOperation() {
@@ -107,7 +90,9 @@ function launchOperation() {
             memoryResult = CALCULATOR.division(num1, num2)
             break
     }
-    updateDisplay("" + num1 + operationSymbol + num2, memoryResult)
+    // return ["" + num1 + operationSymbol + num2+ ' =', memoryResult]
+    operation = [memoryResult]
+    updateDisplay("" + num1 + operationSymbol + num2+ ' =', memoryResult)
 }
 
 function getOperationData() {
@@ -115,6 +100,22 @@ function getOperationData() {
     operation.push(resultDisplay.value)
     return [parseFloat(operation[0]), operation[1], parseFloat(operation[2])]
 }
+
+function updateDisplay(previousOperation, result) {
+    previousDisplay.value = previousOperation
+    resultDisplay.value = result
+}
+
+
+function setBasicOperationsListener() {
+    document.getElementById("=").addEventListener("click", () => {
+        if (!Array.from(previousDisplay.value).some((letter) => letter === '=')) {
+            launchOperation()
+        }
+    })
+}
+
+
 
 function setCleanListeners() {
     Array.from(document.getElementsByClassName("clean")).forEach((element) => {
