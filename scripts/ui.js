@@ -22,39 +22,46 @@ function setOperationListeners() {
                 let num1 = getFirstValue()
                 let result
                 let operationDisplay
-                let finishedOperation = true
                 let operationSymbol = e.target.id
                 let isConcatOperation = operation.length === 2 && BASIC_OPERATIONS.includes(operationSymbol)
 
                 if (isConcatOperation) {
-                    console.log(operationSymbol)
-                    launchOperation()
-                    updateDisplay(resultDisplay.value + operationSymbol, 0)
+                    const [_, result] = launchOperation()
+                    updateDisplay(result + operationSymbol, 0)
                     operation.push(operationSymbol)
                 } else {
                     switch (operationSymbol) {
                         case "√":
                             result = CALCULATOR.squareRoot(num1)
                             operationDisplay = "√" + num1 + ' ='
-                            operation = [result]
                             break
 
                         case "e":
                             result = CALCULATOR.exponential(num1)
                             operationDisplay = "e^" + num1 + ' ='
-                            operation = [result]
                             break
 
                         default:
                             result = 0
                             operationDisplay = operation[0] + operationSymbol
                             operation.push(operationSymbol)
-
-                            finishedOperation = false
-
                             break
                     }
-                    memoryResult = num1
+
+                    if (!BASIC_OPERATIONS.includes(operationSymbol) && BASIC_OPERATIONS.includes(operation[1])) {
+                        resultDisplay.value = result
+                        let savedOperation = [operation[0], operation[1]]
+
+                        let [_, result2] = launchOperation()
+                        result = result2
+                        operationDisplay = savedOperation[0] + savedOperation[1] + operationDisplay
+                    } else if (result) {
+                        operation = [result]
+                    }
+
+                    if (!memoryResult) {
+                        memoryResult = num1
+                    }
                     updateDisplay(operationDisplay, result)
                 }
             }
@@ -76,6 +83,7 @@ function getFirstValue() {
 
 function launchOperation() {
     let [num1, operationSymbol, num2] = getOperationData()
+
     switch (operationSymbol) {
         case "+":
             memoryResult = CALCULATOR.aggregation(num1, num2)
@@ -90,9 +98,11 @@ function launchOperation() {
             memoryResult = CALCULATOR.division(num1, num2)
             break
     }
-    // return ["" + num1 + operationSymbol + num2+ ' =', memoryResult]
+
     operation = [memoryResult]
-    updateDisplay("" + num1 + operationSymbol + num2+ ' =', memoryResult)
+    const visualOperation = "".concat(num1.toString(), operationSymbol, num2.toString(), ' =')
+
+    return [visualOperation, memoryResult]
 }
 
 function getOperationData() {
@@ -110,7 +120,8 @@ function updateDisplay(previousOperation, result) {
 function setBasicOperationsListener() {
     document.getElementById("=").addEventListener("click", () => {
         if (!Array.from(previousDisplay.value).some((letter) => letter === '=')) {
-            launchOperation()
+            const [visualOperation, result] = launchOperation()
+            updateDisplay(visualOperation, result)
         }
     })
 }
@@ -176,7 +187,6 @@ function setNumbersListeners() {
             } else {
                 resultDisplay.value += e.target.id
             }
-            console.log(memoryResult, operation)
         })
     })
 }
