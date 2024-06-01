@@ -115,8 +115,6 @@ function setBasicOperationsListener() {
     })
 }
 
-
-
 function setCleanListeners() {
     Array.from(document.getElementsByClassName("clean")).forEach((element) => {
         element.addEventListener("click", (e) => {
