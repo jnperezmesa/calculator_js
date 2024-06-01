@@ -29,7 +29,7 @@ Then('UI: Previous should tell {string}', {timeout: 60 * 1000}, async function (
     assert.strictEqual(operation, element);
 });
 
-// AfterAll(async function(){
-//     await driver.quit();
-// });
+AfterAll(async function(){
+    await driver.quit();
+});
 

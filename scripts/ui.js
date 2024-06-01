@@ -10,7 +10,6 @@ const BASIC_OPERATIONS = ['+', '-', '*', '/']
 // ============ Variables ============
 let operation = []
 let memoryResult = 0
-//let availableOperations = '='
 let previousDisplay = document.getElementById(PREVIOUS)
 let resultDisplay = document.getElementById(RESULT)
 
@@ -185,7 +184,6 @@ function setNumbersListeners() {
 
 function cleanPreviousDisplay() {
     let previous = previousDisplay.value
-    //if (Array.from(previous).some((letter) => Array.from(availableOperations).some((symbol) => symbol === letter))) {
     if (Array.from(previous).some((letter) => '=' === letter)) {
         previousDisplay.value = memoryResult
         operation = [memoryResult]

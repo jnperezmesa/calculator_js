@@ -1,24 +1,73 @@
-input {
-    height: 30px;
-    text-align: center;
+body {
+    font-family: "DSEG7 Classic", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1d1f21;
 }
 
-button {
-    margin: 10px 0 0 0
+#result, #previous {
+    width: 300px;
+    height: 45px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #545557;
+    font-size: 24px;
+    background-color: #9ea2a6;
+    color: #1d1f21;
+    text-align: center;
+    border-radius: 8px;
 }
 
 .row {
-    margin: 5px;
+    display: flex;
 }
 
-.row button {
+button {
+    flex: 1;
+    height: 55px;
     margin: 5px;
-    height: 30px;
-    width: 35px;
+    border: 1px solid #545557;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #505050;
+    color: white;
+    transition: background-color 0.2s;
+    border-radius: 8px;
+}
+
+.operation {
+    background-color: #f29f05;
+}
+
+.clean {
+    background-color: #d43f3a;
+}
+
+button:hover {
+    background-color: #686868;
+}
+
+.operation:hover {
+    background-color: #da8400;
+}
+
+.clean:hover {
+    background-color: #c53530;
 }
 
 #previous {
-    /* position: fixed;*/
-    top: -50px;
-    z-index: -1;
+    font-size: 18px;
+}
+
+#clear {
+    height: 50px;
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
+.equal{
+    color: #1d1f21;
+    background-color: white;
 }
