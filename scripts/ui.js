@@ -160,7 +160,7 @@ function clearAll() {
 
 function setChangeSymbolListener() {
     document.getElementById("+/-").addEventListener("click", () => {
-        cleanPreviousDisplay()
+        cleanDisplay()
 
         let result = resultDisplay.value
 
@@ -175,7 +175,7 @@ function setChangeSymbolListener() {
 function setNumbersListeners() {
     Array.from(document.getElementsByClassName("number")).forEach((element) => {
         element.addEventListener("click", (e) => {
-            cleanPreviousDisplay()
+            cleanDisplay()
 
             let currentValue = resultDisplay.value
             if (!memoryResult) {
@@ -191,11 +191,13 @@ function setNumbersListeners() {
     })
 }
 
-function cleanPreviousDisplay() {
+function cleanDisplay() {
     let previous = previousDisplay.value
+    console.log(Array.from(previous).some((letter) => '=' === letter))
     if (Array.from(previous).some((letter) => '=' === letter)) {
-        previousDisplay.value = memoryResult
-        operation = [memoryResult]
+        memoryResult = ''
+        previousDisplay.value = ''
+        operation = []
         resultDisplay.value = '0'
     }
 }

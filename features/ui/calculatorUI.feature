@@ -66,6 +66,7 @@ Feature: CalculatorUI
       | first_key | second_key | third_key | fourth_key | fifth_key | answer | operation |
       | 1         | .          | 1         | 2          | √         | 1.058  | √1.12 =   |
       | 9         | +          | 8         | =          | ⌫         | 1      |           |
+      | 5         | +          | 3         | =          | 3         | 3      |           |
 
   Scenario Outline: TestUICalculator6clicks
     Given UI: I am on the calculator
