@@ -8,7 +8,7 @@ const BASIC_OPERATIONS = ['+', '-', '*', '/']
 
 
 // ============ Variables ============
-let operation = []
+let currentOperation = []
 let memoryResult = 0
 let previousDisplay = document.getElementById(PREVIOUS)
 let resultDisplay = document.getElementById(RESULT)
@@ -23,12 +23,12 @@ function setOperationListeners() {
                 let result
                 let operationDisplay
                 let operationSymbol = e.target.id
-                let isConcatOperation = operation.length === 2 && BASIC_OPERATIONS.includes(operationSymbol)
+                let isConcatOperation = currentOperation.length === 2 && BASIC_OPERATIONS.includes(operationSymbol)
 
                 if (isConcatOperation) {
                     const [_, result] = launchOperation()
                     updateDisplay(result + operationSymbol, 0)
-                    operation.push(operationSymbol)
+                    currentOperation.push(operationSymbol)
                 } else {
                     switch (operationSymbol) {
                         case "√":
@@ -43,20 +43,20 @@ function setOperationListeners() {
 
                         default:
                             result = 0
-                            operationDisplay = operation[0] + operationSymbol
-                            operation.push(operationSymbol)
+                            operationDisplay = currentOperation[0] + operationSymbol
+                            currentOperation.push(operationSymbol)
                             break
                     }
 
-                    if (!BASIC_OPERATIONS.includes(operationSymbol) && BASIC_OPERATIONS.includes(operation[1])) {
+                    if (!BASIC_OPERATIONS.includes(operationSymbol) && BASIC_OPERATIONS.includes(currentOperation[1])) {
                         resultDisplay.value = result
-                        let savedOperation = [operation[0], operation[1]]
+                        let savedOperation = [currentOperation[0], currentOperation[1]]
 
                         let [_, result2] = launchOperation()
                         result = result2
                         operationDisplay = savedOperation[0] + savedOperation[1] + operationDisplay
                     } else if (result) {
-                        operation = [result]
+                        currentOperation = [result]
                     }
 
                     if (!memoryResult) {
@@ -72,8 +72,8 @@ function setOperationListeners() {
 function updateOperation() {
     // Add result data to the operation array if it's empty
     // It is for chained operations (Example 4+4 = 8+4)
-    if (!operation[0]) {
-        operation.push(resultDisplay.value)
+    if (!currentOperation[0]) {
+        currentOperation.push(resultDisplay.value)
     }
 }
 
@@ -99,7 +99,7 @@ function launchOperation() {
             break
     }
 
-    operation = [memoryResult]
+    currentOperation = [memoryResult]
     const visualOperation = "".concat(num1.toString(), operationSymbol, num2.toString(), ' =')
 
     return [visualOperation, memoryResult]
@@ -107,8 +107,8 @@ function launchOperation() {
 
 function getOperationData() {
     // [num1, operationSymbol, num2]
-    operation.push(resultDisplay.value)
-    return [parseFloat(operation[0]), operation[1], parseFloat(operation[2])]
+    currentOperation.push(resultDisplay.value)
+    return [parseFloat(currentOperation[0]), currentOperation[1], parseFloat(currentOperation[2])]
 }
 
 function updateDisplay(previousOperation, result) {
@@ -154,7 +154,7 @@ function removeLast() {
 function clearAll() {
     previousDisplay.value = ''
     resultDisplay.value = '0'
-    operation = []
+    currentOperation = []
     memoryResult = 0
 }
 
@@ -193,11 +193,10 @@ function setNumbersListeners() {
 
 function cleanDisplay() {
     let previous = previousDisplay.value
-    console.log(Array.from(previous).some((letter) => '=' === letter))
     if (Array.from(previous).some((letter) => '=' === letter)) {
         memoryResult = ''
         previousDisplay.value = ''
-        operation = []
+        currentOperation = []
         resultDisplay.value = '0'
     }
 }
