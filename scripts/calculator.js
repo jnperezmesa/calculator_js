@@ -91,7 +91,6 @@ class Calculator {
     }
 
 
-
     #calculateExponential(number, isNegative) {
         let sumOfSeries = 1.0
         let term = 1.0
