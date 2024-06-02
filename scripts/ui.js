@@ -15,6 +15,32 @@ let resultDisplay = document.getElementById(RESULT)
 
 
 // ============ Functions ============
+function initializeCalculator() {
+    setCleanButtonListeners()
+
+    setBasicOperationsListener()
+    setOperationListeners()
+    setChangeSymbolListener()
+    setNumbersListeners()
+}
+
+function setCleanButtonListeners() {
+    document.querySelectorAll('.clean').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.target.id === '⌫' ? removeLast() : clearAll();
+        });
+    });
+}
+
+function setBasicOperationListener() {
+    document.getElementById("=").addEventListener("click", () => {
+        if (!previousDisplay.value.includes('=')) {
+            const [visualOperation, result] = executeOperation();
+            updateDisplay(visualOperation, result);
+        }
+    });
+}
+
 function setOperationListeners() {
     Array.from(document.getElementsByClassName("operation")).forEach((element) => {
         element.addEventListener("click", (e) => {
@@ -26,7 +52,7 @@ function setOperationListeners() {
                 let isConcatOperation = currentOperation.length === 2 && BASIC_OPERATIONS.includes(operationSymbol)
 
                 if (isConcatOperation) {
-                    const [_, result] = launchOperation()
+                    const [_, result] = executeOperation()
                     updateDisplay(result + operationSymbol, 0)
                     currentOperation.push(operationSymbol)
                 } else {
@@ -52,7 +78,7 @@ function setOperationListeners() {
                         resultDisplay.value = result
                         let savedOperation = [currentOperation[0], currentOperation[1]]
 
-                        let [_, result2] = launchOperation()
+                        let [_, result2] = executeOperation()
                         result = result2
                         operationDisplay = savedOperation[0] + savedOperation[1] + operationDisplay
                     } else if (result) {
@@ -81,28 +107,23 @@ function getFirstValue() {
     return parseFloat(resultDisplay.value)
 }
 
-function launchOperation() {
-    let [num1, operationSymbol, num2] = getOperationData()
+
+function executeOperation() {
+    const [num1, operationSymbol, num2] = getOperationData();
+    let result;
 
     switch (operationSymbol) {
-        case "+":
-            memoryResult = CALCULATOR.aggregation(num1, num2)
-            break
-        case "-":
-            memoryResult = CALCULATOR.subtraction(num1, num2)
-            break
-        case "*":
-            memoryResult = CALCULATOR.multiplication(num1, num2)
-            break
-        case "/":
-            memoryResult = CALCULATOR.division(num1, num2)
-            break
+        case "+": result = CALCULATOR.aggregation(num1, num2); break;
+        case "-": result = CALCULATOR.subtraction(num1, num2); break;
+        case "*": result = CALCULATOR.multiplication(num1, num2); break;
+        case "/": result = CALCULATOR.division(num1, num2); break;
     }
 
-    currentOperation = [memoryResult]
-    const visualOperation = "".concat(num1.toString(), operationSymbol, num2.toString(), ' =')
+    memoryResult = result;
+    currentOperation = [result];
 
-    return [visualOperation, memoryResult]
+    const visualOperation = `${num1}${operationSymbol}${num2} =`;
+    return [visualOperation, result];
 }
 
 function getOperationData() {
@@ -120,24 +141,9 @@ function updateDisplay(previousOperation, result) {
 function setBasicOperationsListener() {
     document.getElementById("=").addEventListener("click", () => {
         if (!Array.from(previousDisplay.value).some((letter) => letter === '=')) {
-            const [visualOperation, result] = launchOperation()
+            const [visualOperation, result] = executeOperation()
             updateDisplay(visualOperation, result)
         }
-    })
-}
-
-function setCleanListeners() {
-    Array.from(document.getElementsByClassName("clean")).forEach((element) => {
-        element.addEventListener("click", (e) => {
-            switch (e.target.id) {
-                case "⌫":
-                    removeLast()
-                    break
-                case "clear" :
-                    clearAll()
-                    break
-            }
-        })
     })
 }
 
@@ -202,9 +208,5 @@ function cleanDisplay() {
 }
 
 
-// ============ Listeners ============
-setCleanListeners()
-setBasicOperationsListener()
-setOperationListeners()
-setChangeSymbolListener()
-setNumbersListeners()
+// ============ Initialize ============
+initializeCalculator()
