@@ -92,7 +92,7 @@ function cleanDisplay() {
 
 function setBasicOperationListener() {
     document.getElementById("=").addEventListener("click", () => {
-        if (!previousDisplay.value.includes('=')) {
+        if (!previousDisplay.value.includes('=') && currentOperation.length === 2 ) {
             const [visualOperation, result] = executeOperation();
             updateDisplay(visualOperation, result);
         }
