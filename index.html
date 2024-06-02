@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Calculadora</title>
-    <link rel="stylesheet" href="styles/styles.css"/>
+    <link href="styles/mobile.css" rel="stylesheet"
+          media="all and (max-width: 1024px)">
+    <link href="styles/desktop.css" rel="stylesheet"
+          media="all and (min-width: 1025px)">
 </head>
 <body>
-<div style="text-align: center;">
-    <input
-            id="previous"
-            placeholder="previous"
-            readonly
-            type="text"
-    />
-    <div></div>
-
-    <input id="result" readonly type="text" value="0"/>
+<div>
+    <div class="display">
+        <label for="previous"></label>
+        <input
+                id="previous"
+                placeholder="previous"
+                readonly
+                type="text"
+        />
+        <label for="result"></label>
+        <input id="result" readonly type="text" value="0"/>
+    </div>
 
     <div>
         <button class="clean" id="clear">clear</button>
