@@ -1,6 +1,6 @@
 # JavaScript Calculator (EN)
 
-This is a simple calculator built with plain JavaScript.
+This is a simple calculator built with plain JavaScript with Test Driven Development.
 
 ## Installation
 
