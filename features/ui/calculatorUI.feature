@@ -1,40 +1,35 @@
 Feature: CalculatorUI
-
   Basic UI
 
   Scenario Outline: TestUICalculator2click
-
     Given UI: I am on the calculator
     When UI: I click on "<first_key>"
     And UI: I click on "<second_key>"
     Then UI: I should be told "<answer>"
     And UI: Previous should tell "<operation>"
-
     Examples:
       | first_key | second_key | answer | operation |
       | 9         | √          | 3      | √9 =      |
       | 2         | e          | 7.389  | e^2 =     |
       | 1         | ⌫          | 0      |           |
+      | 1         | =          | 1      |           |
 
   Scenario Outline: TestUICalculator3clicks
-
     Given UI: I am on the calculator
     When UI: I click on "<first_key>"
     And UI: I click on "<second_key>"
     And UI: I click on "<third_key>"
     Then UI: I should be told "<answer>"
     And UI: Previous should tell "<operation>"
-
     Examples:
       | first_key | second_key | third_key | answer | operation |
       | 9         | √          | =         | 3      | √9 =      |
       | 2         | e          | =         | 7.389  | e^2 =     |
       | 1         | ⌫          | 0         | 0      |           |
-      | 5         | +          | 3         | 3      | 5+       |
-      | 7         | -          | 4         | 4      | 7-       |
+      | 5         | +          | 3         | 3      | 5+        |
+      | 7         | -          | 4         | 4      | 7-        |
 
   Scenario Outline: TestUICalculator4clicks
-
     Given UI: I am on the calculator
     When UI: I click on "<first_key>"
     And UI: I click on "<second_key>"
@@ -42,7 +37,6 @@ Feature: CalculatorUI
     And UI: I click on "<fourth_key>"
     Then UI: I should be told "<answer>"
     And UI: Previous should tell "<operation>"
-
     Examples:
       | first_key | second_key | third_key | fourth_key | answer | operation |
       | 1         | +          | 1         | =          | 2      | 1+1 =     |
@@ -52,7 +46,6 @@ Feature: CalculatorUI
       | 8         | +          | 8         | +          | 0      | 16+       |
 
   Scenario Outline: TestUICalculator5clicks
-
     Given UI: I am on the calculator
     When UI: I click on "<first_key>"
     And UI: I click on "<second_key>"
@@ -61,7 +54,6 @@ Feature: CalculatorUI
     And UI: I click on "<fifth_key>"
     Then UI: I should be told "<answer>"
     And UI: Previous should tell "<operation>"
-
     Examples:
       | first_key | second_key | third_key | fourth_key | fifth_key | answer | operation |
       | 1         | .          | 1         | 2          | √         | 1.058  | √1.12 =   |
@@ -112,7 +104,7 @@ Feature: CalculatorUI
     Examples:
       | first_key | second_key | third_key | fourth_key | error_message |
       | 5         | /          | 0         | =          | Not possible  |
-      | +/-       | 5          | √         | =           | Not possible  |
+      | +/-       | 5          | √         | =          | Not possible  |
 
   Scenario: TestUICalculatorClearButton
     Given UI: I am on the calculator

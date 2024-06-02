@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Calculadora</title>
-    <link rel="stylesheet" href="styles/styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Calculadora"/>
+    <link href="styles/main.css" rel="stylesheet">
 </head>
 <body>
-<div style="text-align: center;">
-    <input
-            id="previous"
-            placeholder="previous"
-            readonly
-            type="text"
-    />
-    <div></div>
-
-    <input id="result" readonly type="text" value="0"/>
+<main>
+    <div class="display">
+        <label for="previous"></label>
+        <input
+                id="previous"
+                placeholder="previous"
+                readonly
+                type="text"
+        />
+        <label for="result"></label>
+        <input id="result" readonly type="text" value="0"/>
+    </div>
 
     <div>
         <button class="clean" id="clear">clear</button>
@@ -55,7 +59,12 @@
         <button class="number" id=".">.</button>
         <button id="=" class="equal">=</button>
     </div>
-</div>
+</main>
+<!--<footer>-->
+<!--    <p>Developed by <a href="">Javi</a></p>-->
+<!--    <p>& <a href="">Yago</a></p>-->
+<!--    <p>with ❤️</p>-->
+<!--</footer>-->
 <script src="dist/bundle.js"></script>
 </body>
 </html>
