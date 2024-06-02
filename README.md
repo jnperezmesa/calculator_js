@@ -1,6 +1,6 @@
 # JavaScript Calculator (EN)
 
-This is a simple calculator built with plain JavaScript.
+This is a simple calculator built with plain JavaScript using Test Driven Development (TDD).
 
 ## Installation
 
@@ -21,7 +21,7 @@ Run `npm run test:ui` to run the interface tests with Cucumber.js. They should o
 
 # Calculadora en JavaScript (ES)
 
-Esta es una simple calculadora construida con JavaScript plano.
+Esta es una simple calculadora construida con JavaScript plano usando Desarrollo guiado por pruebas.
 
 ## Instalación
 
