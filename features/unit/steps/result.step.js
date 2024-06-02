@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { Then } = require('@cucumber/cucumber');
+const {Then} = require('@cucumber/cucumber');
 
 Then('I should be told {float}', function (expectedAnswer) {
     assert.strictEqual(this.actualAnswer, expectedAnswer);
