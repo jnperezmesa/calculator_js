@@ -12,6 +12,7 @@ Feature: CalculatorUI
       | 9         | √          | 3      | √9 =      |
       | 2         | e          | 7.389  | e^2 =     |
       | 1         | ⌫          | 0      |           |
+      | 1         | =          | 1      |           |
 
   Scenario Outline: TestUICalculator3clicks
     Given UI: I am on the calculator
