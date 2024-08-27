@@ -4,9 +4,10 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 95vh;
+    min-height: 75vh;
     background-color: #1d1f21;
     text-align: center;
+    overflow: hidden;
 }
 
 .display {
