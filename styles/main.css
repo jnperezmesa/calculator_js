@@ -7,6 +7,7 @@ body {
     min-height: 75vh;
     background-color: #1d1f21;
     text-align: center;
+    overflow: hidden;
 }
 
 .display {
@@ -85,4 +86,24 @@ button:hover {
 .equal{
     color: #1d1f21;
     background-color: white;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1d1f21;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 10px;
+}
+
+.footer a{
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+.footer a:hover{
+    text-decoration: underline;
 }

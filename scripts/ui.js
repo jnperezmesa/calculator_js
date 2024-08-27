@@ -22,6 +22,7 @@ function initializeCalculator() {
     setNumbersListeners()
     setBasicOperationListener()
     setOperationListeners()
+    lockScreen()
 }
 
 function setCleanButtonListeners() {
@@ -197,6 +198,16 @@ function getOperationData() {
     // [num1, operationSymbol, num2]
     currentOperation.push(resultDisplay.value)
     return [parseFloat(currentOperation[0]), currentOperation[1], parseFloat(currentOperation[2])]
+}
+
+function lockScreen() {
+    document.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('wheel', function(event) {
+        event.preventDefault();
+    }, { passive: false });
 }
 
 // ============ Initialize ============
